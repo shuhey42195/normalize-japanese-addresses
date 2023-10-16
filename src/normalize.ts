@@ -429,10 +429,14 @@ export const normalize: Normalizer = async (
     if (town) {
       addr = addr
         .replace(/^-/, '')
-        .replace(/([0-9]+)(丁目)/g, (match) => {
-          return match.replace(/([0-9]+)/g, (num) => {
-            return number2kanji(Number(num))
-          })
+        //.replace(/([0-9]+)(丁目)/g, (match) => {
+        //  return match.replace(/([0-9]+)/g, (num) => {
+        //    return number2kanji(Number(num))
+        //  })
+        //})
+        // 漢数字と"丁目"の表記を数字に変換
+        .replace(/([〇一二三四五六七八九十百千]+)丁目/g, (match, number) => {
+          return kan2num(number) + "丁目";
         })
         .replace(
           /(([0-9〇一二三四五六七八九十百千]+)(番地?)([0-9〇一二三四五六七八九十百千]+)号)\s*(.+)/,
