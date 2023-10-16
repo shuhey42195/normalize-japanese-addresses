@@ -435,9 +435,9 @@ export const normalize: Normalizer = async (
         //  })
         //})
         // 漢数字と"丁目"の表記を数字に変換
-        .replace(/([〇一二三四五六七八九十百千]+)丁目/g, (match) => {
-          return kan2num(match) + "丁目";
-        })
+        //.replace(/([〇一二三四五六七八九十百千]+)丁目/g, (match) => {
+        //  return kan2num(match) + "丁目";
+        //})
         .replace(
           /(([0-9〇一二三四五六七八九十百千]+)(番地?)([0-9〇一二三四五六七八九十百千]+)号)\s*(.+)/,
           '$1 $5',
