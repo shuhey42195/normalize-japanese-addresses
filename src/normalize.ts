@@ -416,6 +416,11 @@ export const normalize: Normalizer = async (
     normalized = await normalizeTownName(addr, pref, city)
     if (normalized) {
       town = normalized.town
+      town = town
+        // 漢数字と"丁目"の表記を数字に変換
+        .replace(/([〇一二三四五六七八九十百千]+)丁目/g, (match) => {
+          return kan2num(match) + "丁目";
+        })
       addr = normalized.addr
       lat = parseFloat(normalized.lat)
       lng = parseFloat(normalized.lng)
